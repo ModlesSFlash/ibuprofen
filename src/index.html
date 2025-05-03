@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ibuprofen</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #eee;
+      font-family: sans-serif;
+      padding: 2rem;
+    }
+
+    #results {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    #searchBtn {
+      padding: 0.5rem 1rem;
+    }
+
+    .thumb {
+      cursor: pointer;
+      text-align: center;
+    }
+    
+    .thumb img {
+      max-width: 150px;
+      border-radius: 8px;
+    }
+    
+    form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1.2rem;
+    }
+
+    button {
+      padding: 0.7rem 1rem;
+      font-size: 1rem;
+      background-color: #4ea3ff;
+      border: none;
+      border-radius: 4px;
+      color: #000;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #6db5ff;
+    }
+
+    .form-group {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      align-items: start;
+      gap: 0.4rem;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 0.25rem;
+    }
+
+    input[type="text"] {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      border: none;
+    }
+
+    .hint {
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-top: 0.3rem;
+    }
+
+    .link {
+      color: #66b3ff;
+      text-decoration: none;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+</head>
+<body>
+  <div id="config-form" style="display: none;">
+    <h2>ibuprofen config.toml setup</h2>
+    <form id="first-launch-form">
+      <div class="form-group">
+        <div>
+          <label>Tenor API Key</label>
+          <div class="hint link" id="link-tenor-api">[link]</div>
+        </div>
+        <input type="text" name="tenor_api_key" required>
+      </div>
+
+      <div class="form-group">
+        <div>
+          <label>Google API Key</label>
+          <div class="hint link" id="link-google-api">[link(!)]</div>
+        </div>
+        <input type="text" name="google_api_key" value="use the tenor one here (unless you have a better idea)" required>
+      </div>
+
+      <div class="form-group">
+        <div>
+          <label>Google Custom Search Engine ID</label>
+          <div class="hint link" id="link-google-cx">[link]</div>
+        </div>
+        <input type="text" name="google_cx" required>
+      </div>
+
+      <div class="form-group">
+        <label for="resolve_host">Resolve Host</label>
+        <input type="text" name="resolve_host" value="127.0.0.1" required>
+      </div>
+
+      <div class="form-group">
+        <label for="resolve_port">Resolve Port</label>
+        <input type="text" name="resolve_port" value="13182" required>
+      </div>
+
+      <div class="form-group">
+        <div>
+          <label for="download_dir">Download Dir</label>
+          <div class="hint">Use `\\` on Windows</div>
+        </div>
+        <input type="text" name="download_dir" value="C:\\Users\\helo\\Downloads\\ibuprofen\\" required>
+      </div>
+
+      <button type="submit">save config</button>
+    </form>
+  </div>
+
+  <div id="app" style="display: none;">
+    <h1>ibuprofen</h1>
+    <label><input type="checkbox" id="google-check" checked> Google Images</label>
+    <label><input type="checkbox" id="tenor-check" checked> Tenor GIFs</label>
+    <form id="search-form">
+      <input type="text" id="search-input" placeholder="Search">
+      <button type="submit" id="search-btn">Search</button>
+    </form>
+    <div id="results"></div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
